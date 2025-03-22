@@ -50,13 +50,17 @@ def play_pronunciation(text, filename="pronunciation.mp3", wav_filename="pronunc
     else:
         st.error("⚠️ 無法播放音訊，音檔未正確生成。")
 
-# **使用者選擇題數**
+# 清理文字：忽略大小寫與符號
+def clean_text(text):
+    return re.sub(r'[^a-zA-Z\-’\' ]', '', text).lower().strip()
+
+# 使用者選擇題數
 num_questions = st.number_input("輸入測試題數", min_value=1, max_value=len(word_data), value=10, step=1)
 
 # 選擇測試類型
 test_type = st.radio("請選擇測試類型：", ["拼寫測試", "填空測試"])
 
-# **初始化 Session State**
+# 初始化 Session State
 if "initialized" not in st.session_state or st.session_state.selected_book != selected_book:
     st.session_state.words = get_unique_words(num_questions)
     st.session_state.current_index = 0
@@ -73,7 +77,7 @@ if st.session_state.current_index < len(st.session_state.words):
 
     if st.button("播放發音 🎵"):
         play_pronunciation(test_word if test_type == "拼寫測試" else example_sentence)
-    
+
     user_answer = st.text_input(
         "請輸入答案：" if test_type == "拼寫測試" else f"請填空：{mask_word(example_sentence, test_word)}",
         value=st.session_state.input_value,
@@ -87,14 +91,14 @@ if st.session_state.current_index < len(st.session_state.words):
         st.session_state.submitted = True
 
     if st.session_state.submitted:
-        if user_answer.lower().strip() == test_word.lower():
+        if clean_text(user_answer) == clean_text(test_word):
             st.success("✅ 正確！")
             st.session_state.score += 1
         else:
             st.error(f"❌ 錯誤，正確答案是 {test_word}")
             play_pronunciation(test_word)
             st.session_state.mistakes.append((test_word, meaning, example_sentence))
-        
+
         st.session_state.input_value = ""
         time.sleep(2)
         st.session_state.submitted = False
@@ -103,14 +107,14 @@ if st.session_state.current_index < len(st.session_state.words):
 
 else:
     st.write(f"🎉 測試結束！你的得分：{st.session_state.score}/{len(st.session_state.words)}")
-    
+
     if st.session_state.mistakes:
         st.write("❌ 你答錯的單字：")
         for word, meaning, example in st.session_state.mistakes:
             st.write(f"**{word}** - {meaning}")
             st.write(f"例句：{example}")
             st.write("---")
-    
+
     if st.button("🔄 重新開始"):
         st.session_state.words = get_unique_words(num_questions)
         st.session_state.current_index = 0
