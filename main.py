@@ -9,15 +9,11 @@ from pydub import AudioSegment
 # 匯入所有書籍的單字庫
 from albert_einstein_was_a_dope import word_data as einstein_words
 from mac_cracks_the_code import word_data as mac_words
-from total_eclipse_nestor_lopez import word_data as eclipse_words
-from our_friend_hedgehog import word_data as hedgehog_words
 
 # 書籍選擇
 book_options = {
     "Albert Einstein was a Dope?": einstein_words,
     "Mac Cracks the Code": mac_words,
-    "The Total Eclipse of Nestor Lopez": eclipse_words,
-    "Our Friend Hedgehog: The Story of Us": hedgehog_words,
 }
 
 st.title("📚 英文單字測試遊戲")
