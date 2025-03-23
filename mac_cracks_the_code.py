@@ -12,4 +12,6 @@ word_data = {
     "Clutch": ("手拿包，小型時尚手提包（女生用）", "She carried a sleek black clutch to the party."),
     "Usher": ("引座員；帶位員；（在婚禮中）招待員", "The usher showed us to our seats before the movie started."),
     "Claw machine": ("夾娃娃機", "He spent five dollars trying to win a toy from the claw machine."),
+    "Dug into": ("大快朵頤地吃；投入；鑽研", "She dug into the cake like she hadn’t eaten all day."),
+    "Bug me": ("惹我煩；讓我困擾", "That sound is really starting to bug me."),
 }
