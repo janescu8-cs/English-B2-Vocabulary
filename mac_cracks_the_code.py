@@ -10,4 +10,6 @@ word_data = {
     "Jack up": ("抬高（價格、數量等）；提高；使增加", "The store jacked up the prices before the holiday."),
     "Dr Pepper": ("胡椒博士汽水（美國品牌的碳酸飲料）", "I ordered a burger and a cold Dr Pepper."),
     "Clutch": ("手拿包，小型時尚手提包（女生用）", "She carried a sleek black clutch to the party."),
+    "Usher": ("引座員；帶位員；（在婚禮中）招待員", "The usher showed us to our seats before the movie started."),
+    "Claw machine": ("夾娃娃機", "He spent five dollars trying to win a toy from the claw machine."),
 }
